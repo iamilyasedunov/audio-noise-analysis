@@ -90,7 +90,9 @@ class WavFileWriter:
 
 def read_opus(filename):
     X, sample_rate = librosa.load(filename)
-    return X
+    wave = Wave(X, framerate=sample_rate)
+
+    return wave
 
 def read_wave(filename="sound.wav"):
     """Reads a wave file.
@@ -1088,7 +1090,7 @@ class Wave:
 
         filename: string
         """
-        print("Writing", filename)
+        #print("Writing", filename)
         wfile = WavFileWriter(filename, self.framerate)
         wfile.write(self)
         wfile.close()
